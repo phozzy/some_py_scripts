@@ -1,6 +1,7 @@
 from functools import reduce
 from operator import or_
-from concurrent.futures import ThreadPoolExecutor
+# from concurrent.futures import ThreadPoolExecutor
+from multiprocessing import cpu_count, Pool
 
 def uplevel(brackets):
     # function returns brackets descendants
@@ -11,8 +12,9 @@ def uplevel(brackets):
 
 def getlevel_map(brackets_list):
     # returns map_object of sets of next level brackets
-    length = len(brackets_list)
-    with ThreadPoolExecutor(length) as executor:
+    workers = cpu_count() * 5
+    # with ThreadPoolExecutor(workers) as executor:
+    with Pool(workers) as executor:
         return executor.map(uplevel, brackets_list)
 
 def getlevel(brackets_list, unused_it = None):
@@ -27,4 +29,4 @@ print(return_level(1))
 print(return_level(2))
 print(return_level(3))
 print(return_level(4))
-print(return_level(9))
+print(return_level(11))
