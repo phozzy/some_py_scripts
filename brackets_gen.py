@@ -7,9 +7,15 @@ def gen_raw_product(level):
     # generate raw product of 0 and 1
     return filter(lambda it: it[0] == '0' and it[-1] == '1', product('01', repeat = 2 * level))
 
+def conver2integers(lists):
+    # conver 0 and 1 to integers
+    return list(map(int, lists))
+
 def conv_int_product(level):
     # conver to integers
-    return map(lambda it: list(map(int, it)), gen_raw_product(level))
+    # with ProcessPoolExecutor() as executor:
+        # return executor.map(conver2integers, gen_raw_product(level))
+    return map(conver2integers, gen_raw_product(level))
 
 def filter_by_level(level):
     # filter by sum
@@ -29,10 +35,12 @@ def convert_list(lists):
 
 def convert2string(level):
     # convert to strings
+    # with ProcessPoolExecutor() as executor:
+        # return executor.map(convert_list, raw_final(level))
     return map(convert_list, raw_final(level))
 
 print(list(convert2string(1)))
 print(list(convert2string(2)))
 print(list(convert2string(3)))
 print(list(convert2string(4)))
-#print(list(convert2string(15)))
+print(list(convert2string(5)))
