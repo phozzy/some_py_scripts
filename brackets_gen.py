@@ -16,7 +16,7 @@ def filter_by_level(level):
 
 def filter_rule(lists):
     # filter rule for lists
-    return all(map(lambda it: it[0] < 2 or it[1] < it[0], enumerate(itertools.accumulate(lists))))
+    return all(map(lambda it: it[0] < 2 or it[1] <= it[0] - it[1] + 1, enumerate(itertools.accumulate(lists))))
 
 def raw_final(level):
     # get raw final list
@@ -28,6 +28,10 @@ def convert_list(lists):
 
 def convert2string(level):
     # convert to strings
-    return map(convert_list, raw_final(3))
+    return map(convert_list, raw_final(level))
 
+print(list(convert2string(1)))
+print(list(convert2string(2)))
 print(list(convert2string(3)))
+print(list(convert2string(4)))
+print(list(convert2string(5)))
