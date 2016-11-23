@@ -1,6 +1,6 @@
 #!/usb/bin/python3
 
-from functools import reduce
+from functools import reduce, repeat
 
 def get_level(level):
     # finita
@@ -8,7 +8,7 @@ def get_level(level):
 
 def get_raw_list(level):
     # returns desired level brackets raw list
-    return reduce(spawn_brackets, range(2 * level), ['('])
+    return reduce(spawn_brackets, enumerate(repeat(level, 2 * level)), ['('])
 
 def spawn_brackets(acc, it):
     # spawns brackets branches
