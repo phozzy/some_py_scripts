@@ -10,5 +10,5 @@ def get_raw_list(level):
     # returns desired level brackets raw list
     return reduce(spawn_brackets, enumerate(repeat(level, 2 * level)), ['('])
 
-def spawn_brackets(acc, it):
+def spawn_brackets(acc, itout):
     # spawns brackets branches
