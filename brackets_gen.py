@@ -9,20 +9,16 @@ def get_raw_list(level):
 
 def spawn_brackets(accout, itout):
     # spawns brackets branches
-    # acc = []
-    # for it in accout:
-        # opening = it.count('(')
-        # closing = it.count(')')
-        # acc = acc + (closing < opening) * [it + ')'] + (opening < itout) * [it + '(']
-        # if closing < opening: 
-            # acc.append(it + ')')
-        # if opening < itout:
-            # acc.append(it + '(')
-    # return acc
-    return reduce(lambda acc, it: acc + (it.count(')') < it.count('(')) * [it + ')'] + (it.count('(') < itout) * [it + '('], accout, [])
+    return reduce(magic, zip(accout, repeat(itout, len(accout))), [])
+
+def magic(accmagic, itmagic):
+    # magic function
+    opening = itmagic[0].count('(')
+    closing = itmagic[0].count(')')
+    return accmagic + (closing < opening) * [itmagic[0] + ')'] + (opening < itmagic[1]) * [itmagic[0] + '(']
 
 print(get_raw_list(1))
 print(get_raw_list(2))
 print(get_raw_list(3))
 print(get_raw_list(4))
-print(get_raw_list(10))
+# print(get_raw_list(10))
