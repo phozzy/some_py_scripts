@@ -12,9 +12,7 @@ def spawn_brackets(accout, itout):
     acc = []
     for it in accout:
         open_brackets, clos_brackets = it.count('('), it.count(')')
-        # acc += (clos_brackets < open_brackets) * [it + ')']
         (clos_brackets < open_brackets) and acc.append(it + ')')
-        # acc += (open_brackets < itout) * [it + '(']
         (open_brackets < itout) and acc.append(it + '(')
     return acc
 
@@ -22,4 +20,4 @@ print(get_raw_list(1))
 print(get_raw_list(2))
 print(get_raw_list(3))
 print(get_raw_list(4))
-print(len(get_raw_list(15)))
+print(len(get_raw_list(12)))
