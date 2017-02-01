@@ -17,5 +17,11 @@ def accum_ones(string):
 def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
 
+def convert_list(lists):
+    # convert 0 to ( and 1 to )
+    return ''.join(map(lambda it: int(it) and '(' or ')', lists))
+
 for it in brackets(4):
-    print(it, list(block(it)))
+    print(convert_list(it))
+
+print(len(brackets(12)))
