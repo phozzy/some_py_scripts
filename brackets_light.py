@@ -3,7 +3,7 @@
 from itertools import accumulate
 
 def brackets(level):
-    return list(filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level)))
+    return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
 
 def fmtdrange(level):
     return map(lambda x: str(bin(x)).lstrip('0b'), rawrange(level))
@@ -18,10 +18,8 @@ def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
 
 def convert_list(lists):
-    # convert 0 to ( and 1 to )
+    # convert 1 to ( and 0 to )
     return ''.join(map(lambda it: int(it) and '(' or ')', lists))
 
-for it in brackets(4):
+for it in brackets(15):
     print(convert_list(it))
-
-print(len(brackets(12)))
