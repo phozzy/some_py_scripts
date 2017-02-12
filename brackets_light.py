@@ -6,7 +6,7 @@ def brackets(level):
     return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
 
 def fmtdrange(level):
-    return map(lambda x: str(bin(x)).lstrip('0b'), rawrange(level))
+    return map(lambda x: bin(x).lstrip('0b'), rawrange(level))
 
 def rawrange(level):
     return range(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
