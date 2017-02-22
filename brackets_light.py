@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
 
 from itertools import accumulate
+# uncomment this for random range, comment for straight range
+# from random import randrange
 
 def brackets(level):
-    # return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
-    return filter(lambda itera: (lambda it: it.count('1') == level and not(any(block(it))) (bin(itera))), rawrange(level))
+    return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
+    # return filter(lambda itera: (lambda it: it.count('1') == level and not(any(block(it))) (bin(itera))), rawrange(level))
 
 def fmtdrange(level):
     return map(lambda x: bin(x).lstrip('0b'), rawrange(level))
 
 def rawrange(level):
+    # comment this for random range, uncomment for straight range
     return range(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
+    # uncomment this for random range, comment for straight range
+    # return randrange(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
 
 def accum_ones(string):
     # return accumulate(map(int, string[::-1]))
@@ -24,6 +29,6 @@ def convert_list(lists):
     return ''.join(map(lambda it: int(it) and '(' or ')', lists))
 
 for it in brackets(15):
-    # print(convert_list(it))
-    print(it)
+    print(convert_list(it))
+    # print(it)
 # a = list(brackets(15))
