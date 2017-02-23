@@ -18,8 +18,8 @@ def rawrange(level):
     # return randrange(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
 
 def accum_ones(string):
-    # return accumulate(map(int, string[::-1]))
-    return accumulate(map(int, string.lstrip('0b')[::-1]))
+    return accumulate(map(int, string[::-1]))
+    # return accumulate(map(int, string.lstrip('0b')[::-1]))
 
 def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
