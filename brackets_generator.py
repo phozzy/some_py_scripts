@@ -7,15 +7,24 @@ from itertools import accumulate
 def brackets(level):
     return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
     # return filter(lambda itera: (lambda it: it.count('1') == level and not(any(block(it))) (bin(itera))), rawrange(level))
+    # return filter(lambda it: bin(it).count('1') == level and vodoo(it, level), rawrange(level))
 
 def fmtdrange(level):
     return map(lambda x: bin(x).lstrip('0b'), rawrange(level))
 
 def rawrange(level):
     # comment this for random range, uncomment for straight range
-    return range(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
+    return range(startvalue(level), stopvalue(level), 2)
     # uncomment this for random range, comment for straight range
-    # return randrange(int('0b' + level *'10', base = 2), int('0b' + level * '1' + level * '0', base = 2) + 0b10, 0b10)
+    # return randrange(startvalue(level), stopvalue(level), 2)
+
+def startvalue(level):
+    # returns start value of sequence
+    return sum(map(lambda it: 2 ** (2 * it + 1), range(level)))
+
+def stopvalue(level):
+    # returns end of the range
+    return 2 ** (2 * level) - 2 ** level + 2
 
 def accum_ones(string):
     return accumulate(map(int, string[::-1]))
@@ -23,6 +32,9 @@ def accum_ones(string):
 
 def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
+
+def vodoo(value, level):
+    returen not(any(map(lambda it: (value % (2 ** it)) >= (2 ** (2 * it + 1) - 2 ** it), range(level))))
 
 def convert_list(lists):
     # convert 1 to ( and 0 to )
