@@ -34,7 +34,7 @@ def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
 
 def vodoo(value, level):
-    returen not(any(map(lambda it: (value % (2 ** it)) >= (2 ** (2 * it + 1) - 2 ** it), range(level))))
+    returen not(any(map(lambda it: (value % (2 ** (it * 2 + 1))) >= (2 ** (2 * it + 1) - 2 ** it), range(1, level))))
 
 def convert_list(lists):
     # convert 1 to ( and 0 to )
