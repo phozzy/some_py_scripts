@@ -5,9 +5,9 @@ from itertools import accumulate
 # from random import randrange
 
 def brackets(level):
-    return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
+    # return filter(lambda it: it.count('1') == level and not(any(block(it))), fmtdrange(level))
     # return filter(lambda itera: (lambda it: it.count('1') == level and not(any(block(it))) (bin(itera))), rawrange(level))
-    # return filter(lambda it: bin(it).count('1') == level and vodoo(it, level), rawrange(level))
+    return filter(lambda it: bin(it).count('1') == level and vodoo(it, level), rawrange(level))
 
 def fmtdrange(level):
     return map(lambda x: bin(x).lstrip('0b'), rawrange(level))
@@ -34,13 +34,13 @@ def block(string):
     return map(lambda it: it[1] > it[0] - it[1] + 1 ,enumerate(accum_ones(string)))
 
 def vodoo(value, level):
-    returen not(any(map(lambda it: (value % (2 ** (it * 2 + 1))) >= (2 ** (2 * it + 1) - 2 ** it), range(1, level))))
+    return not(any(map(lambda it: (value % (2 ** (it * 2 + 1))) >= (2 ** (2 * it + 1) - 2 ** it), range(1, level))))
 
 def convert_list(lists):
     # convert 1 to ( and 0 to )
     return ''.join(map(lambda it: int(it) and '(' or ')', lists))
 
 for it in brackets(15):
-    print(convert_list(it))
-    # print(it)
+    # print(convert_list(bin(it).lstrip('0b')))
+    print(it)
 # a = list(brackets(15))
