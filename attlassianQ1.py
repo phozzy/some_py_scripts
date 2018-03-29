@@ -10,4 +10,4 @@ def longestEvenWord(sentence):
     return functools.reduce(
         __compareWords__,
         sentence.split(),
-        ('00', 0))
+        ('00', 0))[0]
