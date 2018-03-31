@@ -20,8 +20,11 @@ def spawn_brackets(accout, itout):
             (lambda open_brackets, clos_brackets: 
                 acc + ((clos_brackets < open_brackets) and [it + ')'] or []) \
                 + ((open_brackets < itout) and [it + '('] or [])) 
-            (it.count('('), it.count(')'))), 
-        accout, [])
+            (it.count('('), it.count(')'))
+        ), 
+        accout,
+        []
+    )
 
 print(get_raw_list(1))
 print(get_raw_list(2))
