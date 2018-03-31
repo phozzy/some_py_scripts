@@ -8,4 +8,3 @@ with open('input.txt') as inputFile, \
             'cpp' : cppFile,
             'cs' : csFile,
         }[it.rstrip().split('.')[1]].write(it)
-        # print(it.rstrip().split('.'))
