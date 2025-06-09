@@ -17,10 +17,10 @@ class FibonacciIterator:
     def __next__(self) -> int:
         (
             self.current_item,
-            self.next_item
+            self.next_item,
         ) = (
             self.next_item,
-            self.current_item + self.next_item
+            self.current_item + self.next_item,
         )
         return self.current_item
 
