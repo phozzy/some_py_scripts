@@ -15,11 +15,14 @@ class FibonacciIterator:
         return self
 
     def __next__(self) -> int:
-        buf: int = self.next_item
-        self.next_item = buf + self.current_item
-        self.current_item = buf
-        self._index += 1
-        return buf
+        (
+            self.current_item,
+            self.next_item
+        ) = (
+            self.next_item,
+            self.current_item + self.next_item
+        )
+        return self.current_item
 
 def main():
     """Main function containing the script logic."""
