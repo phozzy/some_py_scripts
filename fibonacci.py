@@ -22,6 +22,7 @@ class FibonacciIterator:
             self.next_item,
             self.current_item + self.next_item,
         )
+        self._index += 1
         return self.current_item
 
 def main():
