@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
-from itertools import accumulate
 from typing import Iterator
+from operator import ge
 
 class BracketGenerator:
     def __init__(self, level: int):
@@ -19,9 +19,6 @@ class BracketGenerator:
             )
         )
 
-    def _fmtdrange(self) -> Iterator[str]:
-        return map(lambda x: bin(x).lstrip('0b'), self._rawrange())
-
     def _rawrange(self) -> range:
         return range(self._startvalue(), self._stopvalue(), 2)
 
@@ -31,16 +28,13 @@ class BracketGenerator:
     def _stopvalue(self) -> int:
         return 2 ** (2 * self.level) - 2 ** self.level + 2
 
-    def _accum_ones(self, string: str) -> Iterator[int]:
-        return accumulate(map(int, string[::-1]))
-
-    def _block(self, string: str) -> Iterator[bool]:
-        return map(lambda it: it[1] > it[0] - it[1] + 1, enumerate(self._accum_ones(string)))
-
     def _is_valid_bracket_sequence(self, value: int) -> bool:
         return not any(
             map(
-                lambda it: (value % (2 ** (it * 2 + 1))) >= (2 ** (2 * it + 1) - 2 ** it),
+                lambda it: ge(
+                        (value % (2 ** (it * 2 + 1))),
+                        (2 ** (2 * it + 1) - 2 ** it)
+                ),
                 range(1, self.level)
             )
         )
