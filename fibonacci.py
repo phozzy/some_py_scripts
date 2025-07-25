@@ -28,7 +28,7 @@ def __main():
     """Main function containing the script logic."""
     print("Fibonacci sequence:")
     fib = FibonacciIterator()
-    
+
     for _ in range(10):
         print(next(fib))
 
