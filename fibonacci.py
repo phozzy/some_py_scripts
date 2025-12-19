@@ -3,6 +3,7 @@
 """Fibonacci sequence generator using a dataclass iterator."""
 
 from dataclasses import dataclass
+from itertools import islice
 
 @dataclass
 class FibonacciIterator:
@@ -24,6 +25,10 @@ class FibonacciIterator:
         self._index += 1
         return self.current_item
 
+def get_nth(n: int) -> int:
+    fib: FibonacciIterator = FibonacciIterator()
+    return next(islice(fib, n, n + 1))
+
 def __main():
     """Main function containing the script logic."""
     print("Fibonacci sequence:")
@@ -31,6 +36,9 @@ def __main():
 
     for _ in range(10):
         print(next(fib))
+
+    print("\n10th Fibonacci number:")
+    print(get_nth(10))
 
 if __name__ == "__main__":
     __main()
