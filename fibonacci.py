@@ -27,7 +27,13 @@ class FibonacciIterator:
 
 def get_nth(n: int) -> int:
     fib: FibonacciIterator = FibonacciIterator()
-    return next(islice(fib, n, n + 1))
+    return next(
+        islice(
+            fib,
+            n,
+            n + 1,
+        )
+    )
 
 def __main():
     """Main function containing the script logic."""
