@@ -19,9 +19,10 @@
         in
         {
           default = pkgs.mkShell {
-            packages = [
-              pkgs.python3
-              pkgs.uv
+            packages = with pkgs; [
+              python3
+              uv
+              cocogitto
             ];
 
             env = lib.optionalAttrs pkgs.stdenv.isLinux {
