@@ -2,6 +2,15 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.0 - 2026-01-04
+#### Features
+- Refactor FibonacciIterator and improve error handling in Fibonacci functions - (edafcb1) - Artur Faizullin
+- Implement mathematical bracket sequence generator using Catalan numbers - (a587139) - Artur Faizullin
+- Add recursive bracket sequence generator implementation - (5d8d8a9) - Artur Faizullin
+- Implement benchmark and memory test for bracket generation approaches - (208f41e) - Artur Faizullin
+
+- - -
+
 ## 0.1.0 - 2026-01-03
 #### Features
 - Add cocogitto to development shell packages in flake.nix - (24c8a9b) - Artur Faizullin
