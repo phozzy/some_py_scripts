@@ -16,7 +16,6 @@ class FibonacciIterator:
     Attributes:
         current_item (int): The current Fibonacci number in the sequence.
         next_item (int): The next Fibonacci number to be returned.
-        _index (int): Internal counter tracking the position in the sequence.
 
     Example:
         >>> fib = FibonacciIterator()
@@ -24,25 +23,26 @@ class FibonacciIterator:
         ...     print(num)
         ...     if i >= 5:
         ...         break
+        0
         1
         1
         2
         3
         5
-        8
 
     Methods:
         __iter__(): Returns the iterator object itself.
         __next__(): Returns the next Fibonacci number in the sequence.
+        reset(): Resets the iterator back to the beginning of the sequence.
     """
     current_item: int = 0
     next_item: int = 1
-    _index: int = 0
 
     def __iter__(self) -> 'FibonacciIterator':
         return self
 
     def __next__(self) -> int:
+        result = self.current_item
         (
             self.current_item,
             self.next_item,
@@ -50,8 +50,12 @@ class FibonacciIterator:
             self.next_item,
             self.current_item + self.next_item,
         )
-        self._index += 1
-        return self.current_item
+        return result
+    
+    def reset(self) -> None:
+        """Reset the iterator back to the beginning of the Fibonacci sequence."""
+        self.current_item = 0
+        self.next_item = 1
 
 def get_nth(n: int) -> int:
     """
@@ -64,8 +68,11 @@ def get_nth(n: int) -> int:
         int: The nth Fibonacci number.
 
     Raises:
-        StopIteration: If the iterator is exhausted before reaching the nth element.
+        ValueError: If n is negative.
     """
+    if n < 0:
+        raise ValueError(f"n must be non-negative, got {n}")
+    
     fib: FibonacciIterator = FibonacciIterator()
     return next(
         islice(
@@ -75,7 +82,35 @@ def get_nth(n: int) -> int:
         )
     )
 
-def __main():
+def fibonacci(n: int) -> list[int]:
+    """
+    Get the first n Fibonacci numbers.
+
+    Args:
+        n (int): Number of Fibonacci numbers to return.
+
+    Returns:
+        list[int]: List containing the first n Fibonacci numbers.
+
+    Raises:
+        ValueError: If n is negative.
+    
+    Example:
+        >>> fibonacci(5)
+        [0, 1, 1, 2, 3]
+        >>> fibonacci(10)
+        [0, 1, 1, 2, 3, 5, 8, 13, 21, 34]
+    """
+    if n < 0:
+        raise ValueError(f"n must be non-negative, got {n}")
+    
+    if n == 0:
+        return []
+    
+    fib: FibonacciIterator = FibonacciIterator()
+    return list(islice(fib, n))
+
+def main():
     """Main function containing the script logic."""
     print("Fibonacci sequence:")
     fib = FibonacciIterator()
@@ -85,6 +120,13 @@ def __main():
 
     print("\n10th Fibonacci number:")
     print(get_nth(10))
+    
+    print("\nFirst 10 Fibonacci numbers:")
+    print(fibonacci(10))
+    
+    print("\nReset demo:")
+    fib.reset()
+    print(f"After reset: {[next(fib) for _ in range(5)]}")
 
 if __name__ == "__main__":
-    __main()
+    main()
