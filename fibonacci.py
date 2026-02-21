@@ -35,27 +35,27 @@ class FibonacciIterator:
         __next__(): Returns the next Fibonacci number in the sequence.
         reset(): Resets the iterator back to the beginning of the sequence.
     """
-    current_item: int = 0
-    next_item: int = 1
+    _current_item: int = 0
+    _next_item: int = 1
 
     def __iter__(self) -> 'FibonacciIterator':
         return self
 
     def __next__(self) -> int:
-        result = self.current_item
+        result = self._current_item
         (
-            self.current_item,
-            self.next_item,
+            self._current_item,
+            self._next_item,
         ) = (
-            self.next_item,
-            self.current_item + self.next_item,
+            self._next_item,
+            self._current_item + self._next_item,
         )
         return result
     
     def reset(self) -> None:
         """Reset the iterator back to the beginning of the Fibonacci sequence."""
-        self.current_item = 0
-        self.next_item = 1
+        self._current_item = 0
+        self._next_item = 1
 
 def get_nth(n: int) -> int:
     """
