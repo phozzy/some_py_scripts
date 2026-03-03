@@ -2,7 +2,7 @@
 
 """Fibonacci sequence generator using a dataclass iterator."""
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from itertools import islice
 
 @dataclass
@@ -35,27 +35,27 @@ class FibonacciIterator:
         __next__(): Returns the next Fibonacci number in the sequence.
         reset(): Resets the iterator back to the beginning of the sequence.
     """
-    _current_item: int = 0
-    _next_item: int = 1
+    current_item: int = field(default=0, init=False)
+    next_item: int = field(default=1, init=False)
 
     def __iter__(self) -> 'FibonacciIterator':
         return self
 
     def __next__(self) -> int:
-        result = self._current_item
+        result = self.current_item
         (
-            self._current_item,
-            self._next_item,
+            self.current_item,
+            self.next_item,
         ) = (
-            self._next_item,
-            self._current_item + self._next_item,
+            self.next_item,
+            self.current_item + self.next_item,
         )
         return result
     
     def reset(self) -> None:
         """Reset the iterator back to the beginning of the Fibonacci sequence."""
-        self._current_item = 0
-        self._next_item = 1
+        self.current_item = 0
+        self.next_item = 1
 
 def get_nth(n: int) -> int:
     """
