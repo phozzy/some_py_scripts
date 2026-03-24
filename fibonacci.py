@@ -42,7 +42,7 @@ class FibonacciIterator:
         return self
 
     def __next__(self) -> int:
-        result = self.current_item
+        result: int = self.current_item
         (
             self.current_item,
             self.next_item,
@@ -113,7 +113,7 @@ def fibonacci(n: int) -> list[int]:
 def main():
     """Main function containing the script logic."""
     print("Fibonacci sequence:")
-    fib = FibonacciIterator()
+    fib: FibonacciIterator = FibonacciIterator()
 
     for _ in range(10):
         print(next(fib))
