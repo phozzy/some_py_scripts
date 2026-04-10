@@ -103,7 +103,7 @@ def draw_stick_figure(ax, x, y, pose='standing', scale=1.0, color='#2c3e50', fli
         # Forward bend / hinge
         head2 = plt.Circle((x + 0.3*s, y + 0.55*s), head_radius, fill=False, color=color, linewidth=2)
         ax.add_patch(head2)
-        ax.patches.remove(head)
+        head.remove()
         ax.plot([x + 0.22*s, x], [y + 0.55*s, y + 0.4*s], color=color, linewidth=2)
         ax.plot([x + 0.15*s, x + 0.35*s], [y + 0.5*s, y + 0.35*s], color=color, linewidth=2)
         ax.plot([x, x - 0.05*s], [y + 0.4*s, y], color=color, linewidth=2)
@@ -138,7 +138,7 @@ def draw_stick_figure(ax, x, y, pose='standing', scale=1.0, color='#2c3e50', fli
         # Tabletop position focusing on wrists
         head3 = plt.Circle((x, y + 0.5*s), head_radius * 0.8, fill=False, color=color, linewidth=2)
         ax.add_patch(head3)
-        ax.patches.remove(head)
+        head.remove()
         # Back horizontal
         ax.plot([x, x + 0.3*s], [y + 0.45*s, y + 0.4*s], color=color, linewidth=2)
         # Arms down
