@@ -5,7 +5,14 @@ description = "Add your description here"
 authors = []
 requires-python = ">=3.13"
 dependencies = [
+    "build123d>=0.10.0",
+    "cadquery>=2.7.0",
+    "cadquery-ocp>=7.8.1.1.post1",
+    "ipykernel>=7.2.0",
+    "jupyter-console>=6.6.3",
     "matplotlib",
     "numpy",
+    "ocp-tessellate>=3.2.2",
+    "ocp-vscode>=3.3.4",
     "pytest>=9.0.2",
 ]
